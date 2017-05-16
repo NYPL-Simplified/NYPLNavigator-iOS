@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D0537011EC79D140054350F /* Deferred.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0536FF1EC79CA90054350F /* Deferred.framework */; };
 		2D579E4C1EC261D000F6377A /* NYPLNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D579E3E1EC261D000F6377A /* NYPLNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */; };
 		2DE6556E1EC5137400E67608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6556D1EC5137400E67608 /* AppDelegate.swift */; };
 		2DE655751EC5137400E67608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE655741EC5137400E67608 /* Assets.xcassets */; };
 		2DE655781EC5137400E67608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE655761EC5137400E67608 /* LaunchScreen.storyboard */; };
@@ -45,6 +46,7 @@
 		2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NYPLNavigator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D579E3E1EC261D000F6377A /* NYPLNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYPLNavigator.h; sourceTree = "<group>"; };
 		2D579E3F1EC261D000F6377A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleEndedScrollView.swift; sourceTree = "<group>"; };
 		2DE6556B1EC5137400E67608 /* NYPLNavigatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYPLNavigatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE6556D1EC5137400E67608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DE655741EC5137400E67608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				2D579E3E1EC261D000F6377A /* NYPLNavigator.h */,
 				2D579E3F1EC261D000F6377A /* Info.plist */,
+				2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */,
 			);
 			path = NYPLNavigator;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 					2D579E3A1EC261D000F6377A = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 7262U6ST2R;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					2DE6556A1EC5137400E67608 = {
@@ -357,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +525,7 @@
 		2D579E501EC261D000F6377A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7262U6ST2R;
@@ -536,6 +542,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.nypl.simplified.NYPLNavigator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -543,6 +550,7 @@
 		2D579E511EC261D000F6377A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7262U6ST2R;
