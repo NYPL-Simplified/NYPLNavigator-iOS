@@ -10,6 +10,7 @@
 		2D0537011EC79D140054350F /* Deferred.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0536FF1EC79CA90054350F /* Deferred.framework */; };
 		2D579E4C1EC261D000F6377A /* NYPLNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D579E3E1EC261D000F6377A /* NYPLNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */; };
+		2D8C0E2A1ED8A4A3003EEB97 /* SpanningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */; };
 		2DE6556E1EC5137400E67608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6556D1EC5137400E67608 /* AppDelegate.swift */; };
 		2DE655751EC5137400E67608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE655741EC5137400E67608 /* Assets.xcassets */; };
 		2DE655781EC5137400E67608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE655761EC5137400E67608 /* LaunchScreen.storyboard */; };
@@ -49,6 +50,7 @@
 		2D579E3E1EC261D000F6377A /* NYPLNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYPLNavigator.h; sourceTree = "<group>"; };
 		2D579E3F1EC261D000F6377A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleEndedScrollView.swift; sourceTree = "<group>"; };
+		2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanningPageViewController.swift; sourceTree = "<group>"; };
 		2DE6556B1EC5137400E67608 /* NYPLNavigatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYPLNavigatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE6556D1EC5137400E67608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DE655741EC5137400E67608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				2D579E3E1EC261D000F6377A /* NYPLNavigator.h */,
 				2D579E3F1EC261D000F6377A /* Info.plist */,
 				2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */,
+				2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */,
 			);
 			path = NYPLNavigator;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D8C0E2A1ED8A4A3003EEB97 /* SpanningPageViewController.swift in Sources */,
 				2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
