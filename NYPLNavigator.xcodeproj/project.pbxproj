@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D579E4C1EC261D000F6377A /* NYPLNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D579E3E1EC261D000F6377A /* NYPLNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D5C84271EE0F8C1001467BC /* NYPLNavigator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; };
+		2D5C84291EE0F973001467BC /* NYPLNavigator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */; };
 		2D8C0E2A1ED8A4A3003EEB97 /* SpanningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */; };
 		2DC15D161EDE1F1600DAB006 /* TriptychViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC15D151EDE1F1600DAB006 /* TriptychViewController.swift */; };
@@ -17,7 +19,6 @@
 		2DE655781EC5137400E67608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE655761EC5137400E67608 /* LaunchScreen.storyboard */; };
 		2DE655831EC5137400E67608 /* NYPLNavigatorExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE655821EC5137400E67608 /* NYPLNavigatorExampleTests.swift */; };
 		2DE6558E1EC5137400E67608 /* NYPLNavigatorExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6558D1EC5137400E67608 /* NYPLNavigatorExampleUITests.swift */; };
-		2DFC6C491ECCFABA00D1662B /* NYPLNavigator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,20 @@
 			remoteInfo = NYPLNavigator;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2D5C842A1EE0F973001467BC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2D5C84291EE0F973001467BC /* NYPLNavigator.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NYPLNavigator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DFC6C491ECCFABA00D1662B /* NYPLNavigator.framework in Frameworks */,
+				2D5C84271EE0F8C1001467BC /* NYPLNavigator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +225,7 @@
 				2DE655671EC5137400E67608 /* Sources */,
 				2DE655681EC5137400E67608 /* Frameworks */,
 				2DE655691EC5137400E67608 /* Resources */,
+				2D5C842A1EE0F973001467BC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -576,6 +592,7 @@
 		2DE655911EC5137400E67608 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7262U6ST2R;
 				INFOPLIST_FILE = NYPLNavigatorExample/Info.plist;
@@ -590,6 +607,7 @@
 		2DE655921EC5137400E67608 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7262U6ST2R;
 				INFOPLIST_FILE = NYPLNavigatorExample/Info.plist;

@@ -53,9 +53,9 @@ public class TriptychViewController: UIViewController {
 
   public weak var delegate: TriptychViewControllerDelegate?
 
-  private(set) var index: Int
+  fileprivate(set) var index: Int
 
-  private let scrollView: UIScrollView
+  fileprivate let scrollView: UIScrollView
 
   public let viewCount: Int
 
@@ -85,6 +85,7 @@ public class TriptychViewController: UIViewController {
     self.scrollView.frame = self.view.bounds
     self.scrollView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     self.scrollView.isPagingEnabled = true
+    self.scrollView.bounces = false
     self.view.addSubview(self.scrollView)
   }
 
@@ -109,11 +110,12 @@ public class TriptychViewController: UIViewController {
   }
 
   public override func viewWillAppear(_ animated: Bool) {
-    if self.views != nil {
-      // We already set up our initial state.
-      return
+    if self.views == nil {
+      self.updateViews()
     }
+  }
 
+  fileprivate func updateViews() {
     guard let delegate = self.delegate else {
       return
     }
@@ -180,4 +182,21 @@ public class TriptychViewController: UIViewController {
 
 extension TriptychViewController: UIScrollViewDelegate {
 
+  public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    let pageOffset = Int(round(scrollView.contentOffset.x / self.scrollView.frame.width))
+    if pageOffset == 0 {
+      if self.index > 0 {
+        self.index -= 1
+      }
+    } else if pageOffset == 1 {
+      if self.index == 0 {
+        self.index += 1
+      }
+    } else {
+      assert(pageOffset == 2)
+      self.index += 1
+    }
+
+    self.updateViews()
+  }
 }

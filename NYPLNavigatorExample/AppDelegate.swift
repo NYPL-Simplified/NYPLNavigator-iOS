@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     self.window = UIWindow(frame: UIScreen.main.bounds)
 
-    let viewController = TriptychViewController(viewCount: 6, initialIndex: 5)
+    let viewController = TriptychViewController(viewCount: 6, initialIndex: 0)
     viewController.delegate = self
 
     self.window!.rootViewController = viewController
