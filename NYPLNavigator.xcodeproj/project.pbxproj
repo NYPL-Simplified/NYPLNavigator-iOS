@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D0537011EC79D140054350F /* Deferred.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0536FF1EC79CA90054350F /* Deferred.framework */; };
 		2D579E4C1EC261D000F6377A /* NYPLNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D579E3E1EC261D000F6377A /* NYPLNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */; };
 		2D8C0E2A1ED8A4A3003EEB97 /* SpanningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */; };
+		2DC15D161EDE1F1600DAB006 /* TriptychViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC15D151EDE1F1600DAB006 /* TriptychViewController.swift */; };
+		2DD953EA1EE0D4D8007808F4 /* Disjunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD953E91EE0D4D8007808F4 /* Disjunction.swift */; };
 		2DE6556E1EC5137400E67608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6556D1EC5137400E67608 /* AppDelegate.swift */; };
 		2DE655751EC5137400E67608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE655741EC5137400E67608 /* Assets.xcassets */; };
 		2DE655781EC5137400E67608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE655761EC5137400E67608 /* LaunchScreen.storyboard */; };
 		2DE655831EC5137400E67608 /* NYPLNavigatorExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE655821EC5137400E67608 /* NYPLNavigatorExampleTests.swift */; };
 		2DE6558E1EC5137400E67608 /* NYPLNavigatorExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6558D1EC5137400E67608 /* NYPLNavigatorExampleUITests.swift */; };
 		2DFC6C491ECCFABA00D1662B /* NYPLNavigator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; };
-		2DFC6C4C1ECCFAD100D1662B /* Deferred.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0536FF1EC79CA90054350F /* Deferred.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,12 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D0536FF1EC79CA90054350F /* Deferred.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Deferred.framework; path = Carthage/Build/iOS/Deferred.framework; sourceTree = "<group>"; };
 		2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NYPLNavigator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D579E3E1EC261D000F6377A /* NYPLNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYPLNavigator.h; sourceTree = "<group>"; };
 		2D579E3F1EC261D000F6377A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleEndedScrollView.swift; sourceTree = "<group>"; };
 		2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanningPageViewController.swift; sourceTree = "<group>"; };
+		2DC15D151EDE1F1600DAB006 /* TriptychViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriptychViewController.swift; sourceTree = "<group>"; };
+		2DD953E91EE0D4D8007808F4 /* Disjunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disjunction.swift; sourceTree = "<group>"; };
 		2DE6556B1EC5137400E67608 /* NYPLNavigatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYPLNavigatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE6556D1EC5137400E67608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DE655741EC5137400E67608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		2DE655891EC5137400E67608 /* NYPLNavigatorExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYPLNavigatorExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE6558D1EC5137400E67608 /* NYPLNavigatorExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYPLNavigatorExampleUITests.swift; sourceTree = "<group>"; };
 		2DE6558F1EC5137400E67608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2DFC6C4A1ECCFAC500D1662B /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Carthage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D0537011EC79D140054350F /* Deferred.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DFC6C4C1ECCFAD100D1662B /* Deferred.framework in Frameworks */,
 				2DFC6C491ECCFABA00D1662B /* NYPLNavigator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,8 +101,6 @@
 		2D0536FE1EC79CA80054350F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2DFC6C4A1ECCFAC500D1662B /* Carthage */,
-				2D0536FF1EC79CA90054350F /* Deferred.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -138,7 +134,9 @@
 				2D579E3E1EC261D000F6377A /* NYPLNavigator.h */,
 				2D579E3F1EC261D000F6377A /* Info.plist */,
 				2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */,
+				2DC15D151EDE1F1600DAB006 /* TriptychViewController.swift */,
 				2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */,
+				2DD953E91EE0D4D8007808F4 /* Disjunction.swift */,
 			);
 			path = NYPLNavigator;
 			sourceTree = "<group>";
@@ -212,7 +210,6 @@
 				2DE655671EC5137400E67608 /* Sources */,
 				2DE655681EC5137400E67608 /* Frameworks */,
 				2DE655691EC5137400E67608 /* Resources */,
-				2DFC6C4E1ECD021700D1662B /* Carthage: Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -364,21 +361,6 @@
 			shellPath = /bin/sh;
 			shellScript = "SWIFTLINT=\"$PROJECT_DIR/SwiftLint/swiftlint\"\nif [ -f \"$SWIFTLINT\" ]; then\n  \"$SWIFTLINT\"\nelse\n  echo error: 'Run \"swiftlint-setup.sh\" to enable linting.'\n  exit 1\nfi\n";
 		};
-		2DFC6C4E1ECD021700D1662B /* Carthage: Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Deferred.framework",
-			);
-			name = "Carthage: Copy Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -386,8 +368,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD953EA1EE0D4D8007808F4 /* Disjunction.swift in Sources */,
 				2D8C0E2A1ED8A4A3003EEB97 /* SpanningPageViewController.swift in Sources */,
 				2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */,
+				2DC15D161EDE1F1600DAB006 /* TriptychViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,10 +542,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = NYPLNavigator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -583,10 +563,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = NYPLNavigator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -602,10 +578,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7262U6ST2R;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = NYPLNavigatorExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -620,10 +592,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7262U6ST2R;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = NYPLNavigatorExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
