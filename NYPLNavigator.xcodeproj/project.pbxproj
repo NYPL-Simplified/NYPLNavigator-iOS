@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D579E4C1EC261D000F6377A /* NYPLNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D579E3E1EC261D000F6377A /* NYPLNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D5826DB1EE1DD3A00E8B2F5 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D5826D91EE1DD3A00E8B2F5 /* manifest.json */; };
+		2D5826DC1EE1DD3A00E8B2F5 /* OEBPS in Resources */ = {isa = PBXBuildFile; fileRef = 2D5826DA1EE1DD3A00E8B2F5 /* OEBPS */; };
 		2D5C84271EE0F8C1001467BC /* NYPLNavigator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; };
 		2D5C84291EE0F973001467BC /* NYPLNavigator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D7351801ECB6F57002D578C /* DoubleEndedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */; };
@@ -63,6 +65,8 @@
 		2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NYPLNavigator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D579E3E1EC261D000F6377A /* NYPLNavigator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYPLNavigator.h; sourceTree = "<group>"; };
 		2D579E3F1EC261D000F6377A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D5826D91EE1DD3A00E8B2F5 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		2D5826DA1EE1DD3A00E8B2F5 /* OEBPS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OEBPS; sourceTree = "<group>"; };
 		2D73517F1ECB6F57002D578C /* DoubleEndedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleEndedScrollView.swift; sourceTree = "<group>"; };
 		2D8C0E291ED8A4A3003EEB97 /* SpanningPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanningPageViewController.swift; sourceTree = "<group>"; };
 		2DC15D151EDE1F1600DAB006 /* TriptychViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriptychViewController.swift; sourceTree = "<group>"; };
@@ -159,10 +163,12 @@
 		2DE6556C1EC5137400E67608 /* NYPLNavigatorExample */ = {
 			isa = PBXGroup;
 			children = (
+				2D5826DA1EE1DD3A00E8B2F5 /* OEBPS */,
+				2D5826D91EE1DD3A00E8B2F5 /* manifest.json */,
+				2DE655791EC5137400E67608 /* Info.plist */,
 				2DE6556D1EC5137400E67608 /* AppDelegate.swift */,
 				2DE655741EC5137400E67608 /* Assets.xcassets */,
 				2DE655761EC5137400E67608 /* LaunchScreen.storyboard */,
-				2DE655791EC5137400E67608 /* Info.plist */,
 			);
 			path = NYPLNavigatorExample;
 			sourceTree = "<group>";
@@ -342,6 +348,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DE655781EC5137400E67608 /* LaunchScreen.storyboard in Resources */,
+				2D5826DB1EE1DD3A00E8B2F5 /* manifest.json in Resources */,
+				2D5826DC1EE1DD3A00E8B2F5 /* OEBPS in Resources */,
 				2DE655751EC5137400E67608 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

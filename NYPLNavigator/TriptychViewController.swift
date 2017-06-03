@@ -59,7 +59,10 @@ public class TriptychViewController: UIViewController {
 
   public let viewCount: Int
 
-  private var views: Views?
+  fileprivate var views: Views?
+
+  // FIXME: Hack?
+  var isLimitingForwardScroll = false
 
   private var isAtAnEdge: Bool {
     return self.index == 0 || self.index == self.viewCount - 1
@@ -182,7 +185,31 @@ public class TriptychViewController: UIViewController {
 
 extension TriptychViewController: UIScrollViewDelegate {
 
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard let views = self.views else {
+      return
+    }
+
+    if scrollView.contentOffset.x < self.scrollView.frame.width
+      && views.count == 3 {
+
+      // We're scrolling back, so let's lock the view so we can't scroll forwards
+      // and skip the next chapter. It'll get reset later.
+      // FIXME: Is this a hack or is this just a good idea?
+      let size = self.view.frame.size
+      scrollView.contentSize = CGSize(width: size.width * 2.0, height: size.height)
+      self.isLimitingForwardScroll = true
+    }
+  }
+
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    // FIXME
+    if self.isLimitingForwardScroll {
+      let size = self.view.frame.size
+      scrollView.contentSize = CGSize(width: size.width * 3.0, height: size.height)
+      self.isLimitingForwardScroll = false
+    }
+
     let pageOffset = Int(round(scrollView.contentOffset.x / self.scrollView.frame.width))
     if pageOffset == 0 {
       if self.index > 0 {
