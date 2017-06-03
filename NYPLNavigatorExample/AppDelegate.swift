@@ -1,11 +1,13 @@
 import NYPLNavigator
 import UIKit
+import WebKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var doubleEndedScrollView = DoubleEndedScrollView(frame: CGRect.zero, progression: .leftToRight)
   var window: UIWindow?
+  let urls = AppDelegate.fileURLs()
 
   func application(
     _ application: UIApplication,
@@ -14,13 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     self.window = UIWindow(frame: UIScreen.main.bounds)
 
-    let viewController = TriptychViewController(viewCount: 6, initialIndex: 0)
+    let viewController = TriptychViewController(viewCount: urls.count, initialIndex: 0)
     viewController.delegate = self
 
     self.window!.rootViewController = viewController
     self.window?.makeKeyAndVisible()
 
     return true
+  }
+
+  /// Returns absolute URLs to all files in the OEBPS directory using the order specified by the manifest.
+  private class func fileURLs() -> [URL] {
+    let stream = InputStream(url: Bundle.main.url(forResource: "manifest", withExtension: "json")!)!
+    stream.open()
+    defer { stream.close() }
+    let object = try! JSONSerialization.jsonObject(with: stream, options: []) as! [String: Any]
+    let oebps = object["OEBPS"] as! [String]
+    return oebps.map {s in Bundle.main.url(forResource: s, withExtension: nil, subdirectory: "OEBPS")! }
   }
 }
 
@@ -32,24 +44,20 @@ extension AppDelegate: TriptychViewControllerDelegate {
     location: TriptychViewController.Location
   ) -> UIView {
 
-    let view = UIView()
-    switch index {
-    case 0:
-      view.backgroundColor = UIColor.red
-    case 1:
-      view.backgroundColor = UIColor.orange
-    case 2:
-      view.backgroundColor = UIColor.yellow
-    case 3:
-      view.backgroundColor = UIColor.green
-    case 4:
-      view.backgroundColor = UIColor.blue
-    case 5:
-      view.backgroundColor = UIColor.purple
-    default:
-      fatalError()
-    }
+    let url = self.urls[index]
 
-    return view
+    let webView = WKWebView(frame: viewController.view.bounds)
+    webView.navigationDelegate = self
+    webView.scrollView.bounces = false
+    webView.scrollView.isPagingEnabled = true
+    webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+
+    return webView
+  }
+}
+
+extension AppDelegate: WKNavigationDelegate {
+
+  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
   }
 }
