@@ -5,9 +5,7 @@ import WebKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var doubleEndedScrollView = DoubleEndedScrollView(frame: CGRect.zero, progression: .leftToRight)
   var window: UIWindow?
-  let urls = AppDelegate.fileURLs()
 
   func application(
     _ application: UIApplication,
@@ -16,10 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     self.window = UIWindow(frame: UIScreen.main.bounds)
 
-    let viewController = TriptychViewController(viewCount: urls.count, initialIndex: 0)
-    viewController.delegate = self
-
-    self.window!.rootViewController = viewController
+    self.window!.rootViewController = NavigatorViewController(spineURLs: AppDelegate.fileURLs(), initialIndex: 0)
     self.window?.makeKeyAndVisible()
 
     return true
@@ -33,31 +28,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let object = try! JSONSerialization.jsonObject(with: stream, options: []) as! [String: Any]
     let oebps = object["OEBPS"] as! [String]
     return oebps.map {s in Bundle.main.url(forResource: s, withExtension: nil, subdirectory: "OEBPS")! }
-  }
-}
-
-extension AppDelegate: TriptychViewControllerDelegate {
-
-  func triptychViewController(
-    _ viewController: TriptychViewController,
-    viewForIndex index: Int,
-    location: TriptychViewController.Location
-  ) -> UIView {
-
-    let url = self.urls[index]
-
-    let webView = WKWebView(frame: viewController.view.bounds)
-    webView.navigationDelegate = self
-    webView.scrollView.bounces = false
-    webView.scrollView.isPagingEnabled = true
-    webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
-
-    return webView
-  }
-}
-
-extension AppDelegate: WKNavigationDelegate {
-
-  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
   }
 }

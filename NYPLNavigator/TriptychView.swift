@@ -1,22 +1,22 @@
 import UIKit
 
-public protocol TriptychViewControllerDelegate: class {
+protocol TriptychViewDelegate: class {
 
-  func triptychViewController(
-    _ viewController: TriptychViewController,
+  func triptychView(
+    _ view: TriptychView,
     viewForIndex index: Int,
-    location: TriptychViewController.Location)
+    location: TriptychView.Location)
     -> UIView
 }
 
-public class TriptychViewController: UIViewController {
+final class TriptychView: UIView {
 
   public enum Location {
     case start
     case end
   }
 
-  private enum Views {
+  fileprivate enum Views {
     case one(view: UIView)
     case two(firstView: UIView, secondView: UIView)
     case many(currentView: UIView, otherViews: Disjunction<UIView, UIView>)
@@ -51,7 +51,11 @@ public class TriptychViewController: UIViewController {
     }
   }
 
-  public weak var delegate: TriptychViewControllerDelegate?
+  public weak var delegate: TriptychViewDelegate? {
+    didSet {
+      self.updateViews()
+    }
+  }
 
   fileprivate(set) var index: Int
 
@@ -68,15 +72,23 @@ public class TriptychViewController: UIViewController {
     return self.index == 0 || self.index == self.viewCount - 1
   }
 
-  public init(viewCount: Int, initialIndex: Int) {
+  public init(frame: CGRect, viewCount: Int, initialIndex: Int) {
+
     precondition(viewCount >= 1)
     precondition(initialIndex >= 0 && initialIndex < viewCount)
 
     self.index = initialIndex
     self.scrollView = UIScrollView()
     self.viewCount = viewCount
-    super.init(nibName: nil, bundle: nil)
+
+    super.init(frame: frame)
+
     self.scrollView.delegate = self
+    self.scrollView.frame = self.bounds
+    self.scrollView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    self.scrollView.isPagingEnabled = true
+    self.scrollView.bounces = false
+    self.addSubview(self.scrollView)
   }
 
   @available(*, unavailable)
@@ -84,21 +96,18 @@ public class TriptychViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
-  public override func viewDidLoad() {
-    self.scrollView.frame = self.view.bounds
-    self.scrollView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    self.scrollView.isPagingEnabled = true
-    self.scrollView.bounces = false
-    self.view.addSubview(self.scrollView)
-  }
+  public override func layoutSubviews() {
 
-  public override func viewWillLayoutSubviews() {
+    if self.views == nil {
+      self.updateViews()
+    }
+
     guard let views = self.views else {
-      self.scrollView.contentSize = self.view.bounds.size
+      self.scrollView.contentSize = self.bounds.size
       return
     }
 
-    let size = self.view.frame.size
+    let size = self.frame.size
 
     self.scrollView.contentSize = CGSize(width: size.width * CGFloat(views.count), height: size.height)
 
@@ -112,12 +121,6 @@ public class TriptychViewController: UIViewController {
     self.scrollView.setContentOffset(CGPoint(x: size.width * CGFloat(offset), y: 0), animated: false)
   }
 
-  public override func viewWillAppear(_ animated: Bool) {
-    if self.views == nil {
-      self.updateViews()
-    }
-  }
-
   fileprivate func updateViews() {
     guard let delegate = self.delegate else {
       return
@@ -126,42 +129,42 @@ public class TriptychViewController: UIViewController {
     switch self.viewCount {
     case 1:
       assert(self.index == 0)
-      let view = delegate.triptychViewController(self, viewForIndex: 0, location: .start)
+      let view = delegate.triptychView(self, viewForIndex: 0, location: .start)
       self.views = Views.one(view: view)
     case 2:
       assert(self.index < 2)
       if index == 0 {
-        let firstView = delegate.triptychViewController(self, viewForIndex: 0, location: .start)
-        let secondView = delegate.triptychViewController(self, viewForIndex: 1, location: .start)
+        let firstView = delegate.triptychView(self, viewForIndex: 0, location: .start)
+        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .start)
         self.views = Views.two(firstView: firstView, secondView: secondView)
       } else {
-        let firstView = delegate.triptychViewController(self, viewForIndex: 0, location: .end)
-        let secondView = delegate.triptychViewController(self, viewForIndex: 1, location: .start)
+        let firstView = delegate.triptychView(self, viewForIndex: 0, location: .end)
+        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .start)
         self.views = Views.two(firstView: firstView, secondView: secondView)
       }
     default:
-      let currentView = delegate.triptychViewController(self, viewForIndex: self.index, location: .start)
+      let currentView = delegate.triptychView(self, viewForIndex: self.index, location: .start)
       if self.index == 0 {
         self.views = Views.many(
           currentView: currentView,
           otherViews: Disjunction.second(value:
-            delegate.triptychViewController(self, viewForIndex: self.index + 1, location: .start)))
+            delegate.triptychView(self, viewForIndex: self.index + 1, location: .start)))
       } else if self.index == self.viewCount - 1 {
         self.views = Views.many(
           currentView: currentView,
           otherViews: Disjunction.first(value:
-            delegate.triptychViewController(self, viewForIndex: self.index - 1, location: .end)))
+            delegate.triptychView(self, viewForIndex: self.index - 1, location: .end)))
       } else {
         self.views = Views.many(
           currentView: currentView,
           otherViews: Disjunction.both(
-            first: delegate.triptychViewController(self, viewForIndex: self.index - 1, location: .end),
-            second: delegate.triptychViewController(self, viewForIndex: self.index + 1, location: .start)))
+            first: delegate.triptychView(self, viewForIndex: self.index - 1, location: .end),
+            second: delegate.triptychView(self, viewForIndex: self.index + 1, location: .start)))
       }
     }
 
     self.syncSubviews()
-    self.view.setNeedsLayout()
+    self.setNeedsLayout()
   }
 
   private func syncSubviews() {
@@ -183,7 +186,7 @@ public class TriptychViewController: UIViewController {
   }
 }
 
-extension TriptychViewController: UIScrollViewDelegate {
+extension TriptychView: UIScrollViewDelegate {
 
   public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     guard let views = self.views else {
@@ -193,19 +196,18 @@ extension TriptychViewController: UIScrollViewDelegate {
     if scrollView.contentOffset.x < self.scrollView.frame.width
       && views.count == 3 {
 
-      // We're scrolling back, so let's lock the view so we can't scroll forwards
-      // and skip the next chapter. It'll get reset later.
-      // FIXME: Is this a hack or is this just a good idea?
-      let size = self.view.frame.size
+      // We're scrolling back, so let's lock the view so we can't scroll
+      // forwards and skip the next chapter. It'll get reset later.
+      let size = self.frame.size
       scrollView.contentSize = CGSize(width: size.width * 2.0, height: size.height)
       self.isLimitingForwardScroll = true
     }
   }
 
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    // FIXME
+
     if self.isLimitingForwardScroll {
-      let size = self.view.frame.size
+      let size = self.frame.size
       scrollView.contentSize = CGSize(width: size.width * 3.0, height: size.height)
       self.isLimitingForwardScroll = false
     }
