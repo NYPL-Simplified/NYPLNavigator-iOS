@@ -41,21 +41,14 @@ extension Delegatee: TriptychViewDelegate {
   public func triptychView(
     _ view: TriptychView,
     viewForIndex index: Int,
-    location: TriptychView.Location
-    ) -> UIView {
+    location: BinaryLocation
+  ) -> UIView {
 
     let url = self.parent.spineURLs[index]
 
-    let webView = WKWebView(frame: view.bounds)
-    webView.navigationDelegate = self
-    webView.scrollView.bounces = false
-    webView.scrollView.isPagingEnabled = true
+    let webView = WebView(frame: view.bounds, initialLocation: location)
     webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
 
     return webView
   }
-}
-
-extension Delegatee: WKNavigationDelegate {
-
 }

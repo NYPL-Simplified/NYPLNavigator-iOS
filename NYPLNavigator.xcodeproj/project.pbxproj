@@ -11,6 +11,8 @@
 		2D5826DB1EE1DD3A00E8B2F5 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D5826D91EE1DD3A00E8B2F5 /* manifest.json */; };
 		2D5826DC1EE1DD3A00E8B2F5 /* OEBPS in Resources */ = {isa = PBXBuildFile; fileRef = 2D5826DA1EE1DD3A00E8B2F5 /* OEBPS */; };
 		2D5826DE1EE4B71800E8B2F5 /* NavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5826DD1EE4B71800E8B2F5 /* NavigatorViewController.swift */; };
+		2D5826E01EE4C50800E8B2F5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5826DF1EE4C50800E8B2F5 /* WebView.swift */; };
+		2D5826E21EE4C57A00E8B2F5 /* BinaryLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5826E11EE4C57A00E8B2F5 /* BinaryLocation.swift */; };
 		2D5C84271EE0F8C1001467BC /* NYPLNavigator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; };
 		2D5C84291EE0F973001467BC /* NYPLNavigator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D579E3B1EC261D000F6377A /* NYPLNavigator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2DC15D161EDE1F1600DAB006 /* TriptychView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC15D151EDE1F1600DAB006 /* TriptychView.swift */; };
@@ -67,6 +69,8 @@
 		2D5826D91EE1DD3A00E8B2F5 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		2D5826DA1EE1DD3A00E8B2F5 /* OEBPS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OEBPS; sourceTree = "<group>"; };
 		2D5826DD1EE4B71800E8B2F5 /* NavigatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigatorViewController.swift; sourceTree = "<group>"; };
+		2D5826DF1EE4C50800E8B2F5 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		2D5826E11EE4C57A00E8B2F5 /* BinaryLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryLocation.swift; sourceTree = "<group>"; };
 		2DC15D151EDE1F1600DAB006 /* TriptychView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriptychView.swift; sourceTree = "<group>"; };
 		2DD953E91EE0D4D8007808F4 /* Disjunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disjunction.swift; sourceTree = "<group>"; };
 		2DE6556B1EC5137400E67608 /* NYPLNavigatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYPLNavigatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,9 +154,11 @@
 			children = (
 				2D579E3E1EC261D000F6377A /* NYPLNavigator.h */,
 				2D579E3F1EC261D000F6377A /* Info.plist */,
-				2DC15D151EDE1F1600DAB006 /* TriptychView.swift */,
+				2D5826E11EE4C57A00E8B2F5 /* BinaryLocation.swift */,
 				2DD953E91EE0D4D8007808F4 /* Disjunction.swift */,
 				2D5826DD1EE4B71800E8B2F5 /* NavigatorViewController.swift */,
+				2DC15D151EDE1F1600DAB006 /* TriptychView.swift */,
+				2D5826DF1EE4C50800E8B2F5 /* WebView.swift */,
 			);
 			path = NYPLNavigator;
 			sourceTree = "<group>";
@@ -390,8 +396,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DD953EA1EE0D4D8007808F4 /* Disjunction.swift in Sources */,
+				2D5826E01EE4C50800E8B2F5 /* WebView.swift in Sources */,
 				2D5826DE1EE4B71800E8B2F5 /* NavigatorViewController.swift in Sources */,
 				2DC15D161EDE1F1600DAB006 /* TriptychView.swift in Sources */,
+				2D5826E21EE4C57A00E8B2F5 /* BinaryLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

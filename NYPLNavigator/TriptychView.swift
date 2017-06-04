@@ -5,16 +5,11 @@ protocol TriptychViewDelegate: class {
   func triptychView(
     _ view: TriptychView,
     viewForIndex index: Int,
-    location: TriptychView.Location)
+    location: BinaryLocation)
     -> UIView
 }
 
 final class TriptychView: UIView {
-
-  public enum Location {
-    case start
-    case end
-  }
 
   fileprivate enum Views {
     case one(view: UIView)
@@ -129,26 +124,26 @@ final class TriptychView: UIView {
     switch self.viewCount {
     case 1:
       assert(self.index == 0)
-      let view = delegate.triptychView(self, viewForIndex: 0, location: .start)
+      let view = delegate.triptychView(self, viewForIndex: 0, location: .beginning)
       self.views = Views.one(view: view)
     case 2:
       assert(self.index < 2)
       if index == 0 {
-        let firstView = delegate.triptychView(self, viewForIndex: 0, location: .start)
-        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .start)
+        let firstView = delegate.triptychView(self, viewForIndex: 0, location: .beginning)
+        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .beginning)
         self.views = Views.two(firstView: firstView, secondView: secondView)
       } else {
         let firstView = delegate.triptychView(self, viewForIndex: 0, location: .end)
-        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .start)
+        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .beginning)
         self.views = Views.two(firstView: firstView, secondView: secondView)
       }
     default:
-      let currentView = delegate.triptychView(self, viewForIndex: self.index, location: .start)
+      let currentView = delegate.triptychView(self, viewForIndex: self.index, location: .beginning)
       if self.index == 0 {
         self.views = Views.many(
           currentView: currentView,
           otherViews: Disjunction.second(value:
-            delegate.triptychView(self, viewForIndex: self.index + 1, location: .start)))
+            delegate.triptychView(self, viewForIndex: self.index + 1, location: .beginning)))
       } else if self.index == self.viewCount - 1 {
         self.views = Views.many(
           currentView: currentView,
@@ -159,7 +154,7 @@ final class TriptychView: UIView {
           currentView: currentView,
           otherViews: Disjunction.both(
             first: delegate.triptychView(self, viewForIndex: self.index - 1, location: .end),
-            second: delegate.triptychView(self, viewForIndex: self.index + 1, location: .start)))
+            second: delegate.triptychView(self, viewForIndex: self.index + 1, location: .beginning)))
       }
     }
 
