@@ -29,6 +29,10 @@ public final class NavigatorViewController: UIViewController {
   public required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  public override var prefersStatusBarHidden: Bool {
+    return true
+  }
 }
 
 /// Used to hide conformance to package-private delegate protocols.
