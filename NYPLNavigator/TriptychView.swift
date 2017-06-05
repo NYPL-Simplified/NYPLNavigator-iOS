@@ -11,6 +11,12 @@ protocol TriptychViewDelegate: class {
 
 final class TriptychView: UIView {
 
+  fileprivate enum Clamping {
+    case none
+    case onlyPrevious
+    case onlyNext
+  }
+
   fileprivate enum Views {
     case one(view: UIView)
     case two(firstView: UIView, secondView: UIView)
@@ -60,8 +66,7 @@ final class TriptychView: UIView {
 
   fileprivate var views: Views?
 
-  // FIXME: Hack?
-  var isLimitingForwardScroll = false
+  fileprivate var clamping: Clamping = .none
 
   private var isAtAnEdge: Bool {
     return self.index == 0 || self.index == self.viewCount - 1
@@ -188,24 +193,28 @@ extension TriptychView: UIScrollViewDelegate {
       return
     }
 
-    if scrollView.contentOffset.x < self.scrollView.frame.width
-      && views.count == 3 {
+    if views.count == 3 {
+      let width = self.frame.size.width
+      let xOffset = self.scrollView.contentOffset.x
 
-      // We're scrolling back, so let's lock the view so we can't scroll
-      // forwards and skip the next chapter. It'll get reset later.
-      let size = self.frame.size
-      scrollView.contentSize = CGSize(width: size.width * 2.0, height: size.height)
-      self.isLimitingForwardScroll = true
+      switch self.clamping {
+      case .none:
+        if xOffset < width {
+          self.clamping = .onlyPrevious
+        } else if xOffset > width {
+          self.clamping = .onlyNext
+        }
+      case .onlyPrevious:
+        self.scrollView.contentOffset.x = min(xOffset, width)
+      case .onlyNext:
+        self.scrollView.contentOffset.x = max(xOffset, width)
+      }
     }
   }
 
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 
-    if self.isLimitingForwardScroll {
-      let size = self.frame.size
-      scrollView.contentSize = CGSize(width: size.width * 3.0, height: size.height)
-      self.isLimitingForwardScroll = false
-    }
+    self.clamping = .none
 
     let pageOffset = Int(round(scrollView.contentOffset.x / self.scrollView.frame.width))
     if pageOffset == 0 {

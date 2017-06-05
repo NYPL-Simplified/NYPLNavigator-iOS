@@ -13,6 +13,7 @@ final class WebView: WKWebView {
     self.navigationDelegate = self
     self.scrollView.bounces = false
     self.scrollView.isPagingEnabled = true
+    self.scrollView.delegate = self
   }
 
   @available(*, unavailable)
@@ -34,5 +35,11 @@ extension WebView: WKNavigationDelegate {
 
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     self.scrollToInitialLocation()
+  }
+}
+
+extension WebView: UIScrollViewDelegate {
+  func viewForZooming(in: UIScrollView) -> UIView? {
+    return nil
   }
 }
