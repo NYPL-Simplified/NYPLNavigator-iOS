@@ -36,6 +36,15 @@ extension WebView: WKNavigationDelegate {
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     self.scrollToInitialLocation()
   }
+
+  func webView(
+    _ webView: WKWebView,
+    decidePolicyFor navigationAction: WKNavigationAction,
+    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
+
+    decisionHandler(navigationAction.navigationType == .other ? .allow : .cancel)
+  }
 }
 
 extension WebView: UIScrollViewDelegate {
