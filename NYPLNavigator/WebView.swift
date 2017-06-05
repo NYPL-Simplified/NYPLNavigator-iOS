@@ -11,9 +11,11 @@ final class WebView: WKWebView {
     super.init(frame: frame, configuration: .init())
 
     self.navigationDelegate = self
+
+    self.scrollView.delegate = self
     self.scrollView.bounces = false
     self.scrollView.isPagingEnabled = true
-    self.scrollView.delegate = self
+    self.scrollView.showsHorizontalScrollIndicator = false
   }
 
   @available(*, unavailable)
