@@ -121,45 +121,83 @@ final class TriptychView: UIView {
     self.scrollView.setContentOffset(CGPoint(x: size.width * CGFloat(offset), y: 0), animated: false)
   }
 
-  fileprivate func updateViews() {
+  fileprivate func updateViews(previousIndex: Int? = nil) {
+
+    if previousIndex == self.index {
+      return
+    }
+
     guard let delegate = self.delegate else {
       return
+    }
+
+    func viewForIndex(_ index: Int, location: BinaryLocation) -> UIView {
+      guard let views = self.views, let previousIndex = previousIndex else {
+        return delegate.triptychView(self, viewForIndex: index, location: location)
+      }
+
+      var indexesToCurrentViews: [Int: UIView] = [:]
+
+      switch views {
+      case .one(let view):
+        indexesToCurrentViews[0] = view
+      case .two(let firstView, let secondView):
+        indexesToCurrentViews[0] = firstView
+        indexesToCurrentViews[1] = secondView
+      case .many(let currentView, let otherViews):
+        indexesToCurrentViews[previousIndex] = currentView
+        switch otherViews {
+        case .first(let view):
+          indexesToCurrentViews[previousIndex - 1] = view
+        case .second(let view):
+          indexesToCurrentViews[previousIndex + 1] = view
+        case .both(let firstView, let secondView):
+          indexesToCurrentViews[previousIndex - 1] = firstView
+          indexesToCurrentViews[previousIndex + 1] = secondView
+        }
+      }
+
+      if let view = indexesToCurrentViews[index] {
+        return view
+      }
+
+      return delegate.triptychView(self, viewForIndex: index, location: location)
     }
 
     switch self.viewCount {
     case 1:
       assert(self.index == 0)
-      let view = delegate.triptychView(self, viewForIndex: 0, location: .beginning)
+      let view = viewForIndex(0, location: .beginning)
       self.views = Views.one(view: view)
     case 2:
       assert(self.index < 2)
       if index == 0 {
-        let firstView = delegate.triptychView(self, viewForIndex: 0, location: .beginning)
-        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .beginning)
+        let firstView = viewForIndex(0, location: .beginning)
+        let secondView = viewForIndex(1, location: .beginning)
         self.views = Views.two(firstView: firstView, secondView: secondView)
       } else {
-        let firstView = delegate.triptychView(self, viewForIndex: 0, location: .end)
-        let secondView = delegate.triptychView(self, viewForIndex: 1, location: .beginning)
+        let firstView = viewForIndex(0, location: .end)
+        let secondView = viewForIndex(1, location: .beginning)
         self.views = Views.two(firstView: firstView, secondView: secondView)
       }
     default:
-      let currentView = delegate.triptychView(self, viewForIndex: self.index, location: .beginning)
+      let currentView = viewForIndex(self.index, location: .beginning)
       if self.index == 0 {
         self.views = Views.many(
           currentView: currentView,
           otherViews: Disjunction.second(value:
-            delegate.triptychView(self, viewForIndex: self.index + 1, location: .beginning)))
+            viewForIndex(self.index + 1, location: .beginning)))
       } else if self.index == self.viewCount - 1 {
         self.views = Views.many(
           currentView: currentView,
           otherViews: Disjunction.first(value:
-            delegate.triptychView(self, viewForIndex: self.index - 1, location: .end)))
+            viewForIndex(self.index - 1, location: .end)))
       } else {
         self.views = Views.many(
           currentView: currentView,
           otherViews: Disjunction.both(
-            first: delegate.triptychView(self, viewForIndex: self.index - 1, location: .end),
-            second: delegate.triptychView(self, viewForIndex: self.index + 1, location: .beginning)))
+            first: viewForIndex(self.index - 1, location: .end),
+            second: viewForIndex(self.index + 1, location: .beginning)))
       }
     }
 
@@ -216,6 +254,8 @@ extension TriptychView: UIScrollViewDelegate {
 
     self.clamping = .none
 
+    let previousIndex = self.index
+
     let pageOffset = Int(round(scrollView.contentOffset.x / self.scrollView.frame.width))
     if pageOffset == 0 {
       if self.index > 0 {
@@ -230,6 +270,6 @@ extension TriptychView: UIScrollViewDelegate {
       self.index += 1
     }
 
-    self.updateViews()
+    self.updateViews(previousIndex: previousIndex)
   }
 }
