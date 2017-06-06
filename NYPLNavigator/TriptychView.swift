@@ -118,7 +118,7 @@ final class TriptychView: UIView {
     }
 
     let offset = min(1, self.index)
-    self.scrollView.setContentOffset(CGPoint(x: size.width * CGFloat(offset), y: 0), animated: false)
+    self.scrollView.contentOffset.x = size.width * CGFloat(offset)
   }
 
   fileprivate func updateViews(previousIndex: Int? = nil) {
@@ -271,5 +271,22 @@ extension TriptychView: UIScrollViewDelegate {
     }
 
     self.updateViews(previousIndex: previousIndex)
+
+    // This works around a very specific case that may be a bug in iOS's scroll
+    // view implementation. If the user is on a view of index >= 1, and if the
+    // user swipes forward slightly and then, with great force, swipes back and
+    // quickly lets go, the scroll view will slam up against the clamped
+    // boundary and "bounce" even if bouncing is disabled. The reason for this
+    // is unclear! In any case, the following code compensates for this by
+    // animating a transition to a content offset on a page boundary if, for any
+    // reason (including the above), the scroll view has come rest on an offset
+    // that is _not_ a page boundary. The conditional guard here prevents
+    // animating if the offset is already correct because otherwise doing so may
+    // result in a visual glitch (also for unknown reasons).
+    if(fmod(scrollView.contentOffset.x, self.scrollView.frame.width) != 0.0) {
+      self.scrollView.setContentOffset(
+        .init(x: CGFloat(pageOffset) * self.scrollView.frame.width, y: 0),
+        animated: true)
+    }
   }
 }
