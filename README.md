@@ -1,6 +1,7 @@
 ![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)
-![Carthage Compatible](https://img.shields.io/badge/Carthage-✓-green.svg)
-![SwiftLint Clean](https://img.shields.io/badge/SwiftLint-✓-green.svg)
+![Carthage Compatible](https://img.shields.io/badge/Carthage-✓-blue.svg)
+![SwiftLint Clean](https://img.shields.io/badge/SwiftLint-✓-blue.svg)
+[![Build Status](https://travis-ci.org/NYPL-Simplified/NYPLNavigator-iOS.svg?branch=master)](https://travis-ci.org/NYPL-Simplified/NYPLNavigator-iOS)
 
 # NYPLNavigator
 
